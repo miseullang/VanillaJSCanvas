@@ -107,9 +107,14 @@ button {
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: left;
+    margin-bottom: 1rem;
 }
 
 .btn-wrapper button:not(:last-child) {
     margin-right: 1rem;
+}
+
+#text {
+    font-size: 1rem;
 }
