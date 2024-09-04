@@ -1,4 +1,6 @@
 const modeBtn = document.getElementById("mode-btn");
+const destroyBtn = document.getElementById('destroy-btn');
+const eraserBtn = document.getElementById('eraser-btn');
 
 // const colorOptions = document.getElementsByClassName('color-option');
 // => 이렇게 생성한 colorOptions는 ArrayLike 객체(O), Array(X)이므로 forEach로 접근할 수 없음.
@@ -13,13 +15,17 @@ const canvas = document.querySelector('canvas');
 // context : 페인트 브러쉬 => 축약해서 ctx로 씀
 const ctx = canvas.getContext('2d'); //WebGL은 3D 요소
 
+const CANVAS_WIDTH = 800;
+const CANVAS_HEIGHT = 800;
+
 // JS에게 캔버스 크기 알려주기 => 왜 ... ? => 좌표값 때문인가봄
-canvas.width = 800;
-canvas.height = 800;
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
 
 ctx.lineWidth = lineWidth.value;
 
 let isPainting = false;
+let isFilling = false;
 
 function onMove(event) {
     if(isPainting) {
@@ -57,12 +63,42 @@ function onColorClick(event) {
     currentColor.innerText = event.target.dataset.color;
 }
 
+function onModeClick(event) {
+    if(isFilling) {
+        isFilling = false
+        modeBtn.innerText = 'Fill'
+    } else {
+        isFilling = true
+        modeBtn.innerText = 'Draw'
+    }
+}
+
+function onCanvasClick() {
+    if(isFilling) {
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    }
+}
+
+function onDestroyClick() {
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+
+function onEraserClick() {
+    ctx.strokeStyle = 'white';
+}
+
 canvas.addEventListener('mousemove', onMove);
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
 canvas.addEventListener('mouseleave', onMouseUp);
+canvas.addEventListener('click', onCanvasClick);
 
 lineWidth.addEventListener('change', onLineWidthChange);
 color.addEventListener('change',onColorChange);
 
 colorOptions.forEach(color => color.addEventListener('click', onColorClick));
+
+modeBtn.addEventListener('click', onModeClick);
+destroyBtn.addEventListener('click', onDestroyClick);
+eraserBtn.addEventListener('click', onEraserClick);

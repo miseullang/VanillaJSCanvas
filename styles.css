@@ -47,6 +47,7 @@ canvas {
     padding: 1rem;
     background-color: white;
     border-radius: 5px;
+    margin-bottom: 1rem;
 }
 
 .palette-title-wrapper {
@@ -94,4 +95,21 @@ canvas {
     width: 50px;
     height: 50px;
     cursor: pointer;
+}
+
+/* 버튼 */
+button {
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+}
+
+.btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-wrapper button:not(:last-child) {
+    margin-right: 1rem;
 }
