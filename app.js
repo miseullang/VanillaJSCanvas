@@ -7,22 +7,13 @@ const ctx = canvas.getContext('2d'); //WebGL은 3D 요소
 canvas.width = 800;
 canvas.height = 800;
 
-// ctx.fillRect(50, 50, 100, 200); => 이 사각형을 만들기 위해서는 다음 과정을 거친다
-// 1. 사각형 그리기
-// ctx.rect(50, 50, 100, 100);
-// ctx.rect(150, 150, 100, 100);
-// ctx.rect(250, 250, 100, 100);
-// 2. 색 채우기
-// ctx.fill();
-
-ctx.rect(50, 50, 100, 100);
-ctx.rect(150, 150, 100, 100);
-ctx.rect(250, 250, 100, 100);
+// ctx.rect(50, 50, 100, 100); => 도형 그리기를 이용하지 않고, 선부터 그려볼 것
+ctx.moveTo(50, 50); // 선의 시작점 좌표 (50,50)
+ctx.lineTo(150, 50); // 선의 끝점 좌표 (150,50)
+// ctx.stroke(); // x축으로 100만큼 선 긋기
+ctx.lineTo(150, 150);
+ctx.lineTo(50, 150);
+ctx.lineTo(50, 50);
 ctx.fill();
 
-// 앞서 그린 경로 끊고 새로 그리기
-ctx.beginPath();
-ctx.rect(350, 350, 100, 100);
-ctx.fillStyle = 'red';
-ctx.fill();
 
