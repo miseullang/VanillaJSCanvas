@@ -7,37 +7,64 @@ const ctx = canvas.getContext('2d'); //WebGL은 3D 요소
 canvas.width = 800;
 canvas.height = 800;
 
-ctx.fillRect(200, 200, 50, 200);
-ctx.fillRect(400, 200, 50, 200);
-ctx.lineWidth = 2; // 라인의 두께를 먼저 조절해준 뒤
-ctx.fillRect(300, 300, 50, 100); // 도형을 그려야 반영됨
-ctx.fillRect(200, 200, 200, 20);
-ctx.moveTo(200, 200);
-ctx.lineTo(325, 100);
-ctx.lineTo(450, 200);
-ctx.fill();
+ctx.lineWidth = 1;
 
-ctx.fillRect(420, 500, 15, 100);
-ctx.fillRect(550, 500, 15, 100);
-ctx.fillRect(460, 500, 60, 150);
 
-ctx.beginPath();
-ctx.arc(490, 450, 40, 0, 2 * Math.PI);
-// ctx.arc(x, y, radius, startAngle, endAngle)
-// radius : 원의 크기
-// startAngle : 원의 시작점
-// endAngle : 원의 끝점 (2 * Math.PI = 0의 360도)
-ctx.fill();
+const colors = {
+    sunset : [
+        "#3E7EAC",
+        "#F2F3F5",
+        "#FBACA4", 
+        "#FFDCD4",
+        "#D5756D"
+    ],
 
-ctx.beginPath();
-ctx.fillStyle = "white";
-ctx.arc(475, 445, 6, 0, 2 * Math.PI);
-ctx.arc(505, 445, 6, 0, 2 * Math.PI);
-ctx.fill();
+    spring : [
+        "#F3F6EB",
+        "#FFCE55",
+        "#DBF68F",
+        "#92C3A5",
+        "#568366"
+    ],
 
-ctx.beginPath();
-ctx.strokeStyle = "white";
-ctx.moveTo(480, 470);
-ctx.lineTo(490, 460);
-ctx.lineTo(500, 470);
-ctx.stroke();
+    ocean : [
+        "#2F4156",
+        "#567C8D",
+        "#C8D9E6",
+        "#F5EFEB",
+        "#FFFFFF"
+    ]
+
+}
+
+// 저장될 테마
+let selectTheme;
+
+// 테마 랜덤 설정 함수
+function randomTheme() {
+    const themeKey = Object.keys(colors);
+    const randomKey = themeKey[Math.trunc(Math.random() * themeKey.length)];
+    selectTheme = colors[randomKey];
+}
+
+// 테마가 지정되지 않았을 때(= 첫 클릭시) 테마 랜덤 설정 함수 실행
+canvas.addEventListener('click', (event) => {
+    if (!selectTheme) {
+        randomTheme();
+    }
+    onClick(event);
+});
+
+function onClick(event) {
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+
+    
+    const color = selectTheme[Math.trunc(Math.random() * selectTheme.length)];
+    ctx.strokeStyle = color;
+
+    ctx.lineTo(event.offsetX, event.offsetY);
+    ctx.stroke();
+};
+
+canvas.addEventListener('mousemove', onClick);
