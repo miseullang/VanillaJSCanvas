@@ -1,3 +1,12 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul,li {
+    list-style: none;
+}
+
 body {
     width: 100%;
     height: 100vh;
@@ -13,4 +22,76 @@ canvas {
     background-color: white;
     border-radius: 8px;
     box-shadow: 4px 1px 16px 0px rgb(0 0 0 / 4%);
+    margin-right: 2rem;
+}
+
+.item-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tools {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+}
+
+.palette {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.palette-title-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+}
+
+.color-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-color {
+    color: gray;
+}
+
+.theme {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+
+}
+
+.theme-name {
+    color: gray;
+    margin-bottom: 0.3rem;
+}
+
+.theme:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.color-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.color-option {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
 }
