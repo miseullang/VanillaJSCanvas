@@ -8,6 +8,58 @@
 </head>
 <body>
     <canvas></canvas>
+    <div class="item-box">
+        <div class="tools">
+            <input id="line-width" type="range"
+            min="1" max="20" value="5" step="0.5">
+        </div>
+
+        <ul class="palette">
+            <li class="palette-title-wrapper">
+                <div class="color-name">
+                    <h3 class="palette-title">Color :&nbsp;</h3>
+                    <span class="current-color"></span>    
+                </div>
+                <input id="color" type="color">
+            </li>
+            <li class="theme">
+                <span class="theme-name">Sunset</span>
+                <div class="color-options">
+                    <div class="color-option" style="background-color: #3E7EAC;"
+                    data-color="#3E7EAC"></div>
+                    <div class="color-option" style="background-color: #F2F3F5;"
+                    data-color="#F2F3F5"></div>
+                    <div class="color-option" style="background-color: #FBACA4;"
+                    data-color="#FBACA4"></div> 
+                    <div class="color-option" style="background-color: #FFDCD4;"
+                    data-color="#FFDCD4"></div>
+                    <div class="color-option" style="background-color: #D5756D;"
+                    data-color="#D5756D"></div>  
+                </div>
+            </li>
+            <li class="theme">
+                <span class="theme-name">Spring</span>
+                <div class="color-options">
+                    <div class="color-option" style="background-color: #F3F6EB;"
+                    data-color="#F3F6EB"></div>
+                    <div class="color-option" style="background-color: #FFCE55;"
+                    data-color="#FFCE55"></div>
+                    <div class="color-option" style="background-color: #DBF68F;"
+                    data-color="#DBF68F"></div>
+                    <div class="color-option" style="background-color: #92C3A5;"
+                    data-color="#92C3A5"></div>
+                    <div class="color-option" style="background-color: #568366;"
+                    data-color="#568366"></div>    
+                </div>
+            </li>
+        </ul>
+
+        <div class="btn-wrapper">
+            <button id="mode-btn">Fill</button>
+            <button id="destroy-btn">Destroy</button>    
+            <button id="eraser-btn">Erase</button>    
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
