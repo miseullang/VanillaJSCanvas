@@ -7,13 +7,37 @@ const ctx = canvas.getContext('2d'); //WebGL은 3D 요소
 canvas.width = 800;
 canvas.height = 800;
 
-// ctx.rect(50, 50, 100, 100); => 도형 그리기를 이용하지 않고, 선부터 그려볼 것
-ctx.moveTo(50, 50); // 선의 시작점 좌표 (50,50)
-ctx.lineTo(150, 50); // 선의 끝점 좌표 (150,50)
-// ctx.stroke(); // x축으로 100만큼 선 긋기
-ctx.lineTo(150, 150);
-ctx.lineTo(50, 150);
-ctx.lineTo(50, 50);
+ctx.fillRect(200, 200, 50, 200);
+ctx.fillRect(400, 200, 50, 200);
+ctx.lineWidth = 2; // 라인의 두께를 먼저 조절해준 뒤
+ctx.fillRect(300, 300, 50, 100); // 도형을 그려야 반영됨
+ctx.fillRect(200, 200, 200, 20);
+ctx.moveTo(200, 200);
+ctx.lineTo(325, 100);
+ctx.lineTo(450, 200);
 ctx.fill();
 
+ctx.fillRect(420, 500, 15, 100);
+ctx.fillRect(550, 500, 15, 100);
+ctx.fillRect(460, 500, 60, 150);
 
+ctx.beginPath();
+ctx.arc(490, 450, 40, 0, 2 * Math.PI);
+// ctx.arc(x, y, radius, startAngle, endAngle)
+// radius : 원의 크기
+// startAngle : 원의 시작점
+// endAngle : 원의 끝점 (2 * Math.PI = 0의 360도)
+ctx.fill();
+
+ctx.beginPath();
+ctx.fillStyle = "white";
+ctx.arc(475, 445, 6, 0, 2 * Math.PI);
+ctx.arc(505, 445, 6, 0, 2 * Math.PI);
+ctx.fill();
+
+ctx.beginPath();
+ctx.strokeStyle = "white";
+ctx.moveTo(480, 470);
+ctx.lineTo(490, 460);
+ctx.lineTo(500, 470);
+ctx.stroke();
