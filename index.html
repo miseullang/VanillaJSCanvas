@@ -10,6 +10,7 @@
     <canvas></canvas>
     <div class="item-box">
         <div class="tools">
+            <h3 class="title">브러시 두께 :&nbsp;</h3>
             <input id="line-width" type="range"
             min="1" max="20" value="5" step="0.5">
         </div>
@@ -17,13 +18,13 @@
         <ul class="palette">
             <li class="palette-title-wrapper">
                 <div class="color-name">
-                    <h3 class="palette-title">Color :&nbsp;</h3>
+                    <h3 class="palette-title title">색상ㅡ  :&nbsp;</h3>
                     <span class="current-color"></span>    
                 </div>
                 <input id="color" type="color">
             </li>
             <li class="theme">
-                <span class="theme-name">Sunset</span>
+                <span class="theme-name">노을지는 하늘</span>
                 <div class="color-options">
                     <div class="color-option" style="background-color: #3E7EAC;"
                     data-color="#3E7EAC"></div>
@@ -38,7 +39,7 @@
                 </div>
             </li>
             <li class="theme">
-                <span class="theme-name">Spring</span>
+                <span class="theme-name">공원산책</span>
                 <div class="color-options">
                     <div class="color-option" style="background-color: #F3F6EB;"
                     data-color="#F3F6EB"></div>
@@ -55,14 +56,21 @@
         </ul>
 
         <div class="btn-wrapper">
-            <button id="mode-btn">Fill</button>
-            <button id="destroy-btn">Destroy</button>    
-            <button id="eraser-btn">Erase</button>    
+            <button id="mode-btn">채우기 🎨</button>
+            <button id="destroy-btn">모두 지우기 🗑️</button>    
+            <button id="eraser-btn">지우개 ❎</button>    
         </div>
 
-        <input type="file" accept="image/*" id="file"/>
-        <!-- accept 속성으로 파일 타입 제한 가능 -->
-        <input type="text" placeholder="입력 후 더블클릭" id="text" />
+        <input type="text" placeholder="입력 후 더블클릭 🖱️" id="text" />
+
+        <div class="btn-wrapper">
+            <label for="file" class="file-lable">
+                이미지 추가하기 📎
+                <input type="file" accept="image/*" id="file"/>
+                <!-- accept 속성으로 파일 타입 제한 가능 -->    
+            </label>
+            <button id="save">이미지 저장하기 🖼️</button>    
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
