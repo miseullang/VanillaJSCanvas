@@ -1,6 +1,9 @@
 const modeBtn = document.getElementById("mode-btn");
 const destroyBtn = document.getElementById('destroy-btn');
 const eraserBtn = document.getElementById('eraser-btn');
+const fileInput = document.getElementById('file');
+const textInput = document.getElementById('text');
+const saveBtn = document.getElementById('save');
 
 // const colorOptions = document.getElementsByClassName('color-option');
 // => 이렇게 생성한 colorOptions는 ArrayLike 객체(O), Array(X)이므로 forEach로 접근할 수 없음.
@@ -23,6 +26,7 @@ canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
 ctx.lineWidth = lineWidth.value;
+ctx.lineCap = "round" // 옵션 : butt, round, square
 
 let isPainting = false;
 let isFilling = false;
@@ -66,10 +70,10 @@ function onColorClick(event) {
 function onModeClick(event) {
     if(isFilling) {
         isFilling = false
-        modeBtn.innerText = 'Fill'
+        modeBtn.innerText = '채우기 🎨'
     } else {
         isFilling = true
-        modeBtn.innerText = 'Draw'
+        modeBtn.innerText = '그리기 🖌️'
     }
 }
 
@@ -88,11 +92,44 @@ function onEraserClick() {
     ctx.strokeStyle = 'white';
 }
 
+function onFileChange(event) {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    const image = new Image() // => html로 <img src=""/> 쓰는 것과 같음
+    image.src = url;
+    image.onload = function() {
+        ctx.drawImage(image, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        image.attributes
+        // ctx.drawImage(캔버스 내에 배치할 이미지, x좌표, y좌표, 너비, 높이)
+        fileInput.value = null; // 파일 목록 비워주기
+    }
+}
+
+function onDoubleClick(event) {
+    ctx.save(); // context를 변경하기 전 저장(현재 상태 : 색상, 스타일 ete...)
+    const text = textInput.value;
+    if (text !== "") {
+        ctx.lineWidth = 1;
+        ctx.font = "48px serif" // context의 font에는두 가지 property를 지정할 수 있음 (size, fontFamily)
+        ctx.fillText(text, event.offsetX, event.offsetY);
+        ctx.restore(); // save 한 지점으로 돌아가기
+    }
+}
+
+function onSaveClick() {
+    const url = canvas.toDataURL(); // 이미지를 URL로 인코딩
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "myDrawing.png";
+    a.click();
+}
+
 canvas.addEventListener('mousemove', onMove);
 canvas.addEventListener('mousedown', onMouseDown);
 canvas.addEventListener('mouseup', onMouseUp);
 canvas.addEventListener('mouseleave', onMouseUp);
 canvas.addEventListener('click', onCanvasClick);
+canvas.addEventListener('dblclick', onDoubleClick);
 
 lineWidth.addEventListener('change', onLineWidthChange);
 color.addEventListener('change',onColorChange);
@@ -102,3 +139,5 @@ colorOptions.forEach(color => color.addEventListener('click', onColorClick));
 modeBtn.addEventListener('click', onModeClick);
 destroyBtn.addEventListener('click', onDestroyClick);
 eraserBtn.addEventListener('click', onEraserClick);
+fileInput.addEventListener('change', onFileChange);
+saveBtn.addEventListener('click', onSaveClick);
